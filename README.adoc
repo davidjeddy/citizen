@@ -7,14 +7,15 @@ image:https://app.fossa.io/api/projects/git%2Bgithub.com%2Foutsideris%2Fcitizen.
 A Private link:https://registry.terraform.io/[Terraform Module] and link:https://www.terraform.io/docs/internals/provider-registry-protocol.html[Terraform Provider] registry.
 
 == Requirements
+
 * HTTPS - Terraform module registry only support HTTPS.
 
 == Download
+
 link:https://github.com/outsideris/citizen/releases/latest[Download the latest release!]
 
 Also, you can use to launch the registry server.
-The docker image is in link:https://github.com/users/outsideris/packages/container/package/citizen[GitHub Container Registry
-].
+The docker image is in link:https://github.com/users/outsideris/packages/container/package/citizen[GitHub Container Registry].
 
 [source, sh]
 ....
@@ -50,11 +51,12 @@ Environment variables:
 If you want to use GCS as a storage, you need to link:https://cloud.google.com/docs/authentication/client-libraries[authenticate to Google Cloud services].
 
 === Database migration
+
 To migrate the database, you can use `citizen generate-migration` command.
 The command will generate migration files which are `schema.prisma` and `migrations/` directory.
 Because we use link:https://www.prisma.io/[prisma] to handle databases, you need to link:https://www.prisma.io/docs/concepts/components/prisma-cli/installation[install prisma CLI].
 
-Then, Set `CITIZEN_DATABASE_TYPE` and `CITIZEN_DATABASE_URL` envorinment variables
+Then, Set `CITIZEN_DATABASE_TYPE` and `CITIZEN_DATABASE_URL` environment variables
 and Run link:https://www.prisma.io/docs/reference/api-reference/command-reference#migrate-deploy[`prisma migrate deploy`] for Sqlite.
 For MongoDB, migration is not required.
 
@@ -75,6 +77,7 @@ $ ./citizen module <namespace> <name> <provider> <version>
 You should set `CITIZEN_ADDR` as citizen registry server address which you will publish your modules to. e.g. `https://registry.example.com`.
 
 === Examples
+
 If you have ALB module in `./alb` directory, and your registry server is launched at `https://registry.example.com`, you run below command in `./alb` directory to publish ALB module.
 [source, sh]
 ....
@@ -98,7 +101,7 @@ Citizen provides a special command to publish providers onto citizen.
 
 * You need to publish your provider with your GPG public key to terraform registry.
 Otherwise, terraform will refuse to install providers.
-Terraform official resistry manage partners' public keys,
+Terraform official registry manage partners' public keys,
 but, each provider version has own public key and signature in citizen registry.
 
 You must first link:https://www.terraform.io/docs/registry/providers/publishing.html[build and package], citizen
@@ -129,6 +132,7 @@ $ ./citizen provider <namespace> <type> <version> [protocols]
 You should set `CITIZEN_ADDR` as citizen registry server address which you will publish your modules to. e.g. `https://registry.example.com`.
 
 === Examples
+
 If you have ALB provider in `./utilities` directory, and your registry server is launched at `https://registry.example.com`,
 you run below command in `./utilities` directory to publish utilities provider.
 [source, sh]
@@ -153,6 +157,7 @@ terraform {
 ....
 
 == Development
+
 Node.js 16+ required
 
 Set environment variables, see above.
@@ -165,6 +170,7 @@ $ ./bin/citizen provider
 ....
 
 === Test
+
 Set at least a storage path and the s3 bucket name variables for the tests to succeed.
 You need to be able to access the bucket, so you probably want to have an active aws or aws-vault profile.
 
@@ -206,4 +212,5 @@ Under ``dist/``,
 citizen binaries for linux, darwin(amd64/arm64) and windows made.
 
 == License
+
 image:https://app.fossa.io/api/projects/git%2Bgithub.com%2Foutsideris%2Fcitizen.svg?type=large["FOSSA Status", link="https://app.fossa.io/projects/git%2Bgithub.com%2Foutsideris%2Fcitizen?ref=badge_large"]
